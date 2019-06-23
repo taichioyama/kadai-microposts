@@ -9,7 +9,11 @@
                 <div>
                     <p class="mb-0">{!! nl2br(e($micropost->content)) !!}</p>
                 </div>
-                <div>
+                <div class='btn-group'>
+                    <!--お気に入り削除ボタン-->
+                    @include('user_favorite.favorite_button', ['micropost' => $micropost])
+                    
+                    <!--投稿削除ボタン-->
                     @if (Auth::id() == $micropost->user_id)
                         {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
